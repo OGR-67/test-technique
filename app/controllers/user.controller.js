@@ -71,6 +71,7 @@ exports.create = async (req, res) => {
     };
 };
 
+// Delete a user
 exports.delete = async (req, res) => {
     // Check token validity 
     if (!await isTokenValid(req, res)) { return; }

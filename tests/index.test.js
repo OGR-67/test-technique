@@ -479,7 +479,6 @@ describe("API tests", () => {
         })
 
         describe("Delete all images", () => {
-
             test("Try to delete with invalid token - status code 401", async () => {
 
                 const axiosOptions = {
@@ -491,7 +490,6 @@ describe("API tests", () => {
                 await expect(axios.request(axiosOptions))
                     .rejects.toThrowError("Request failed with status code 401")
             })
-
 
             test("Delete all images should work", async () => {
 

@@ -1,4 +1,4 @@
-# Delete an Image
+# Convert an Image to an HTML image tag
 
 [Back to summary](../../README.md)  
 

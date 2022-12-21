@@ -28,7 +28,7 @@ Used to retireve a particular image.
         "data": [255,216,"...",126]
     },
     "imageMime": "image/jpeg",
-    "imageType": ".jpg",
+    "imageExt": ".jpg",
     "description":"a wonderful example", 
     "updatedAt":"2022-12-20T08:21:21.896Z", 
     "createdAt":"2022-12-20T08:21:21.896Z"

@@ -9,6 +9,9 @@ const { extname } = require("path")
 // Create and Save a new Image
 exports.create = async (req, res) => {
     try {
+        // Check token validity 
+        if (!await isTokenValid(req, res)) { return; }
+
         // Validate request
         if (!req.body.description) {
             res.status(400).json({
@@ -16,9 +19,6 @@ exports.create = async (req, res) => {
             });
             return;
         }
-
-        // Check token validity 
-        if (!await isTokenValid(req, res)) { return; }
 
         // Convert image to base64
         const imagePath = req.body.imagePath
@@ -58,7 +58,7 @@ exports.findAll = async (req, res) => {
     let condition = description ? { description: { [Op.iLike]: `%${description}%` } } : null;
 
     try {
-        // SELECT * FROM image WHERE description ILIKE description
+        // SELECT * FROM image WHERE description ILIKE "%description%"
         data = await Image.findAll({ where: condition })
         res.status(200).json(data);
     }
@@ -121,7 +121,7 @@ exports.update = async (req, res) => {
             });
         } else {
             res.status(400).json({
-                message: `Cannot update Image with id=${id}. Maybe Image was not found or HTTP body is empty.`
+                message: `Cannot update Image with id=${id}. Maybe Image was not found or description is not present in HTTP boby.`
             });
         }
     }
@@ -172,7 +172,7 @@ exports.deleteAll = async (req, res) => {
         // TRUNCATE TABLE image
         const numberOfDeletedImages = await Image.destroy({
             where: {},
-            truncate: true
+            truncate: false
         })
 
         res.status(200).json({ message: `${numberOfDeletedImages} Images were deleted successfully!` });

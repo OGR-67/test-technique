@@ -10,6 +10,10 @@ Used to update the description of an image.
 
 **Auth required** : YES `HEADERS/token`
 
+**URL constraints** : `:id` as an integer
+
+**URL example** : `/api/images/1`
+
 **Data constraints** :
 
 ```json
@@ -70,7 +74,7 @@ Used to update the description of an image.
 
 ### Can't update image
 
-**Condition** : If cannot find the image with the given `id` or if `id` wasn't given.
+**Condition** : If cannot find the image with the given `id`.
 
 **Code** : `400 BAD REQUEST`
 
@@ -78,7 +82,7 @@ Used to update the description of an image.
 
 ```json
 {
-    "message": "Cannot update Image with id=153. Maybe Image was not found or HTTP Body is empty."
+    "message": "Cannot update Image with id=153. Maybe Image was not found or description is not present in HTTP boby."
 }
 ```
 

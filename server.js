@@ -16,7 +16,7 @@ db.sequelize.sync({ force: true }) // TODO: delete force: true for production
 
 // routes
 app.get("/", (req, res) => {
-    res.json({ message: "Welcome to Image API" })
+    res.json({ message: "Welcome to Image API, check documentation at https://github.com/OGR-67/test-technique/blob/main/README.md" })
 });
 
 require("./app/routes/images.routes")(app);

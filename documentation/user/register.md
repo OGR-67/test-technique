@@ -2,9 +2,9 @@
 
 [Back to summary](../../README.md)  
 
-Used create a user.
+Used to create a user.
 
-**URL** : `/user/login/`
+**URL** : `/user/register/`
 
 **Method** : `POST`
 
@@ -36,6 +36,7 @@ Used create a user.
 
 ```json
 {
+    "id": 1,
     "token": "93144b288eb1fdccbe46d6fc0f241a51766ecd3d"
 }
 ```
@@ -52,9 +53,7 @@ Used create a user.
 
 ```json
 {
-    "message": [
-        "email and password cannot be empty!"
-    ]
+    "message": "email and password cannot be empty!"
 }
 ```
 
@@ -68,9 +67,7 @@ Used create a user.
 
 ```json
 {
-    "message": [
-        "invalid email adress"
-    ]
+    "message": "invalid email adress"
 }
 ```
 
@@ -84,8 +81,6 @@ Used create a user.
 
 ```json
 {
-    "message": [
-        "user iLoveImages@example.com already exist"
-    ]
+    "message": "user iLoveImages@example.com already exist"
 }
 ```

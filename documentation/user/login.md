@@ -92,7 +92,7 @@ Used to collect a Token for a registered User.
 
 ### Invalid password
 
-**Condition** : Wrong `email` and `password` combination.
+**Condition** : User is known bu wrong `email` and `password` combination was given.
 
 **Code** : `401 UNAUTHORIZED`
 

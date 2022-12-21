@@ -1,8 +1,8 @@
-# Create Image
+# Create an Image Record
 
 [Back to summary](../../README.md)  
 
-Used to create an Image.
+Used to create an Image record.
 
 **URL** : `/api/images`
 
@@ -42,7 +42,7 @@ Used to create an Image.
         "data": [255,216,"...",234,126]
     },
     "imageMime": "image/jpeg",
-    "imageType": ".jpg",
+    "imageExt": ".jpg",
     "description":"a wonderful example", 
     "updatedAt":"2022-12-20T08:21:21.896Z", 
     "createdAt":"2022-12-20T08:21:21.896Z"
@@ -53,7 +53,7 @@ Used to create an Image.
 
 ### No description was given
 
-**Condition** : If 'description' was given.
+**Condition** : If 'description' wasn't given in body.
 
 **Code** : `400 BAD REQUEST`
 

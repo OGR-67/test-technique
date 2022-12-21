@@ -58,7 +58,7 @@ Used to delete an Image.
 
 ### Can't delete image
 
-**Condition** : If cannot find the image with the given `id` or if `id` wasn't given.
+**Condition** : If cannot find the image with the given `id`.
 
 **Code** : `400 BAD REQUEST`
 
