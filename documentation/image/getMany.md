@@ -64,7 +64,7 @@ Used to retrieve images.
 
 ```json
 {
-    message: "Can't find token. Check your headers"
+    "message": "Can't find token. Check your headers"
 }
 ```
 
@@ -78,6 +78,6 @@ Used to retrieve images.
 
 ```json
 {
-    message: "Invalid token, please register to get full access"
+    "message": "Invalid token, please register to get full access"
 }
 ```
