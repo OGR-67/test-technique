@@ -69,3 +69,17 @@ Used to delete an Image.
     "message": "Cannot update Image with id=153. Maybe Image was not found!"
 }
 ```
+
+### Id is not an integer
+
+**Condition** : If the given Id is not an integer.
+
+**Code** : `400 BAD REQUEST`
+
+**Content** :
+
+```json
+{
+    "message": "id must be an integer. Check documentation."
+}
+```

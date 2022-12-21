@@ -53,3 +53,17 @@ Used to convert an image to a HTML image tag.
     "message": "Invalid token, please register to get full access"
 }
 ```
+
+### Id is not an integer
+
+**Condition** : If the given Id is not an integer.
+
+**Code** : `400 BAD REQUEST`
+
+**Content** :
+
+```json
+{
+    "message": "id must be an integer. Check documentation."
+}
+```

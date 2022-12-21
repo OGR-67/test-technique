@@ -54,6 +54,8 @@ exports.create = async (req, res) => {
         };
 
         // Save User in the database
+        // INSERT INTO user (email, password, token)
+        // VALUES (user.email, user.password, user.token)
         const data = await User.create(user)
         res.json({
             id: data.id,
@@ -78,6 +80,7 @@ exports.delete = async (req, res) => {
 
     const id = req.params.id;
     try {
+        // DELETE FROM user where id=id
         const userIsDeleted = await User.destroy({ where: { id: id } })
 
         if (userIsDeleted == true) {
@@ -116,12 +119,11 @@ exports.sendToken = async (req, res) => {
             return;
         }
 
-        // Prepare databasee query
         let user = req.body.email
-        let userCondition = user ? { email: { [Op.like]: `${user}` } } : null;
 
         // retrieve user
-        const data = await User.findOne({ where: userCondition })
+        // SELECT * FROM user where email=user
+        const data = await User.findOne({ where: { email: user } })
 
         // Check if user exist and skip if not
         if (data == null) {
@@ -148,6 +150,7 @@ exports.sendToken = async (req, res) => {
 
 // Helper function to check if user already exists
 userExists = async (email) => {
+    // SELECT * FROM user WHERE email=email
     const existingUser = await User.findOne({ where: { email: email } })
     if (existingUser === null) {
         return false;

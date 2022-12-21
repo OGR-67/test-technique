@@ -1,4 +1,4 @@
-# Update
+# Update One Image
 
 [Back to summary](../../README.md)  
 
@@ -79,5 +79,19 @@ Used to update the description of an image.
 ```json
 {
     "message": "Cannot update Image with id=153. Maybe Image was not found or HTTP Body is empty."
+}
+```
+
+### Id is not an integer
+
+**Condition** : If the given Id is not an integer.
+
+**Code** : `400 BAD REQUEST`
+
+**Content** :
+
+```json
+{
+    "message": "id must be an integer. Check documentation."
 }
 ```

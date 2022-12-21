@@ -1,4 +1,4 @@
-# Find a single image
+# Find One Image
 
 [Back to summary](../../README.md)  
 
@@ -76,5 +76,19 @@ Used to retireve a particular image.
 ```json
 {
     "message": "Cannot find Image with id=153."
+}
+```
+
+### Id is not an integer
+
+**Condition** : If the given Id is not an integer.
+
+**Code** : `400 BAD REQUEST`
+
+**Content** :
+
+```json
+{
+    "message": "id must be an integer. Check documentation."
 }
 ```

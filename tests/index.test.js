@@ -9,7 +9,7 @@ describe("API tests", () => {
     describe("User related tests", () => {
         describe("Register", () => {
 
-            test("Try to create a user without every fields provided", async () => {
+            test("Try to create a user without every fields provided - status code 400", async () => {
 
                 const axiosOptions = {
                     method: "POST",
@@ -25,7 +25,7 @@ describe("API tests", () => {
 
             })
 
-            test("Try to register with invalid email", async () => {
+            test("Try to register with invalid email - status code 400", async () => {
 
                 const axiosOptions = {
                     method: "POST",
@@ -41,7 +41,7 @@ describe("API tests", () => {
 
             })
 
-            test('Create user', async () => {
+            test('Create user should work', async () => {
 
                 const axiosOptions = {
                     method: "POST",
@@ -60,7 +60,7 @@ describe("API tests", () => {
                 userId = response.data.id
             });
 
-            test("Try to create the same user", async () => {
+            test("Try to create the same user - status code 409", async () => {
 
                 const axiosOptions = {
                     method: "POST",
@@ -78,7 +78,7 @@ describe("API tests", () => {
 
         describe("Login", () => {
 
-            test("Try to login with wrong credentials", async () => {
+            test("Try to login with wrong credentials should fail", async () => {
 
                 const axiosOptions = {
                     method: "GET",
@@ -101,7 +101,7 @@ describe("API tests", () => {
                     .rejects.toThrowError("Request failed with status code 401");
             })
 
-            test("Login to colect token", async () => {
+            test("Login to colect token should work", async () => {
                 const axiosOptions = {
                     method: "GET",
                     url: `${host}/user/login`,
@@ -117,9 +117,9 @@ describe("API tests", () => {
             })
         })
 
-        describe("Delete user", () => {
+        describe("Delete one user", () => {
 
-            test("Try to delete with invalid token", async () => {
+            test("Try to delete with invalid token - status code 401", async () => {
 
                 const axiosOptions = {
                     method: "DELETE",
@@ -131,7 +131,7 @@ describe("API tests", () => {
                     .rejects.toThrowError("Request failed with status code 401")
             })
 
-            test("Try to DELETE user with id not a number", async () => {
+            test("Try to DELETE user with id not a number status code 400", async () => {
 
                 const axiosOptions = {
                     method: "DELETE",
@@ -143,7 +143,7 @@ describe("API tests", () => {
                     .rejects.toThrowError("Request failed with status code 400")
             })
 
-            test("Delete an user", async () => {
+            test("Delete one user should work", async () => {
 
                 let axiosOptions = {
                     method: "POST",
@@ -176,7 +176,7 @@ describe("API tests", () => {
     describe("Image related tests", () => {
         describe("Create Image", () => {
 
-            test("Try to create an image without providing a description", async () => {
+            test("Try to create an image without providing a description - status code 400", async () => {
 
                 const axiosOptions = {
                     method: "POST",
@@ -190,7 +190,7 @@ describe("API tests", () => {
                     .rejects.toThrowError("Request failed with status code 400");
             })
 
-            test("Try to create an image without token", async () => {
+            test("Try to create an image without token - status code 400", async () => {
 
                 const axiosOptions = {
                     method: "POST",
@@ -204,7 +204,7 @@ describe("API tests", () => {
                     .rejects.toThrowError("Request failed with status code 400")
             })
 
-            test("Try to create an image with wrong token", async () => {
+            test("Try to create an image with wrong token - status code 401", async () => {
 
                 const axiosOptions = {
                     method: "POST",
@@ -219,7 +219,7 @@ describe("API tests", () => {
                     .rejects.toThrowError("Request failed with status code 401")
             })
 
-            test("Create Image", async () => {
+            test("Create Imag should work", async () => {
 
                 const axiosOptions = {
                     method: "POST",
@@ -240,7 +240,7 @@ describe("API tests", () => {
 
         describe("Find images", () => {
 
-            test("Try to find image with invalid token", async () => {
+            test("Try to find image with invalid token - status code 401", async () => {
 
                 const axiosOptions = {
                     method: "GET",
@@ -252,7 +252,7 @@ describe("API tests", () => {
                     .rejects.toThrowError("Request failed with status code 401")
             })
 
-            test("Find all images", async () => {
+            test("Find all images should work", async () => {
                 let axiosOptions = {
                     method: "POST",
                     url: `${host}/api/images`,
@@ -276,7 +276,7 @@ describe("API tests", () => {
                 expect(Array.isArray(response.data)).toBe(true)
             })
 
-            test("Find images with a keyword in description", async () => {
+            test("Find images with a keyword in description should also work", async () => {
 
                 const axiosOptions = {
                     method: "GET",
@@ -292,7 +292,7 @@ describe("API tests", () => {
 
         describe("Find one image", () => {
 
-            test("Try to find image with invalid token", async () => {
+            test("Try to find image with invalid token - status code 401", async () => {
 
                 const axiosOptions = {
                     method: "GET",
@@ -304,7 +304,7 @@ describe("API tests", () => {
                     .rejects.toThrowError("Request failed with status code 401")
             })
 
-            test("Try to find image with id not a number", async () => {
+            test("Try to find image with id not a number - status code 400", async () => {
 
                 const axiosOptions = {
                     method: "GET",
@@ -316,7 +316,7 @@ describe("API tests", () => {
                     .rejects.toThrowError("Request failed with status code 400")
             })
 
-            test("Find the image of id 1", async () => {
+            test("Find the image of id 1 should work", async () => {
 
                 const axiosOptions = {
                     method: "GET",
@@ -332,7 +332,7 @@ describe("API tests", () => {
 
         describe("Update an Image description", () => {
 
-            test("Try to update with invalid token", async () => {
+            test("Try to update with invalid token - status code 401", async () => {
 
                 const axiosOptions = {
                     method: "PUT",
@@ -344,7 +344,7 @@ describe("API tests", () => {
                     .rejects.toThrowError("Request failed with status code 401")
             })
 
-            test("Try to update image with id not a number", async () => {
+            test("Try to update image with id not a number - status code 400", async () => {
 
                 const axiosOptions = {
                     method: "PUT",
@@ -356,7 +356,7 @@ describe("API tests", () => {
                     .rejects.toThrowError("Request failed with status code 400")
             })
 
-            test("Try to update image with id 1 without description in body", async () => {
+            test("Try to update image with id 1 without description in body - status code 400", async () => {
                 const axiosOptions = {
                     method: "PUT",
                     url: `${host}/api/images/1`,
@@ -368,7 +368,7 @@ describe("API tests", () => {
 
             })
 
-            test("Update the image of id 1", async () => {
+            test("Update the image of id 1 should work", async () => {
 
                 const axiosOptions = {
                     method: "PUT",
@@ -386,7 +386,7 @@ describe("API tests", () => {
 
         describe("Convert an image to an HTML image tag", () => {
 
-            test("Try to update with invalid token", async () => {
+            test("Try to update with invalid token - status code 401", async () => {
 
                 const axiosOptions = {
                     method: "GET",
@@ -398,7 +398,7 @@ describe("API tests", () => {
                     .rejects.toThrowError("Request failed with status code 401")
             })
 
-            test("Try to convert image with id not a number", async () => {
+            test("Try to convert image with id not a number - status code 400", async () => {
 
                 const axiosOptions = {
                     method: "GET",
@@ -410,7 +410,7 @@ describe("API tests", () => {
                     .rejects.toThrowError("Request failed with status code 400")
             })
 
-            test("Convert the image of id 1", async () => {
+            test("Convert the image of id 1 should work", async () => {
 
                 const axiosOptions = {
                     method: "GET",
@@ -426,7 +426,7 @@ describe("API tests", () => {
         })
 
         describe("Delete an Image", () => {
-            test("Try to delete with invalid token", async () => {
+            test("Try to delete with invalid token - status code 401", async () => {
 
                 const axiosOptions = {
                     method: "DELETE",
@@ -438,7 +438,7 @@ describe("API tests", () => {
                     .rejects.toThrowError("Request failed with status code 401")
             })
 
-            test("Try to DELETE image with id not a number", async () => {
+            test("Try to DELETE image with id not a number - status code 400", async () => {
 
                 const axiosOptions = {
                     method: "DELETE",
@@ -450,7 +450,7 @@ describe("API tests", () => {
                     .rejects.toThrowError("Request failed with status code 400")
             })
 
-            test("Delete an image", async () => {
+            test("Delete an image should work", async () => {
 
                 let axiosOptions = {
                     method: "POST",
@@ -480,7 +480,7 @@ describe("API tests", () => {
 
         describe("Delete all images", () => {
 
-            test("Try to delete with invalid token", async () => {
+            test("Try to delete with invalid token - status code 401", async () => {
 
                 const axiosOptions = {
                     method: "DELETE",
@@ -493,7 +493,7 @@ describe("API tests", () => {
             })
 
 
-            test("Delete all images", async () => {
+            test("Delete all images should work", async () => {
 
                 let axiosOptions = {
                     method: "DELETE",

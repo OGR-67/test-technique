@@ -31,11 +31,13 @@ exports.create = async (req, res) => {
         const image = {
             imageData: buffer,
             imageMime: mimeForImage,
-            imageType: imageExtension,
+            imageExt: imageExtension,
             description: req.body.description,
         }
 
         // Save Image in the database
+        // INSERT INTO image (imageData, imageMime, imageExt, description)
+        // VALUES (buffer, mimeForImage, imageExtension, description)
         data = await Image.create(image)
         res.status(200).json(data);
     }
@@ -56,6 +58,7 @@ exports.findAll = async (req, res) => {
     let condition = description ? { description: { [Op.iLike]: `%${description}%` } } : null;
 
     try {
+        // SELECT * FROM image WHERE description ILIKE description
         data = await Image.findAll({ where: condition })
         res.status(200).json(data);
     }
@@ -78,6 +81,7 @@ exports.findOne = async (req, res) => {
 
     const id = req.params.id;
     try {
+        // SELECT * FROM image WHERE id=id
         const data = await Image.findByPk(id)
 
         if (data) { res.status(200).json(data); }
@@ -106,6 +110,7 @@ exports.update = async (req, res) => {
     const id = req.params.id;
 
     try {
+        // UPDATE image set description = req.body.description WHERE id=id
         const imageIsUpdated = await Image.update(req.body, {
             where: { id: id }
         })
@@ -138,6 +143,7 @@ exports.delete = async (req, res) => {
 
     const id = req.params.id;
     try {
+        // DELETE FROM image where id=id
         const imageIsDeleted = await Image.destroy({ where: { id: id } })
 
         if (imageIsDeleted == true) {
@@ -163,9 +169,10 @@ exports.deleteAll = async (req, res) => {
     if (!await isTokenValid(req, res)) { return; }
 
     try {
+        // TRUNCATE TABLE image
         const numberOfDeletedImages = await Image.destroy({
             where: {},
-            truncate: false
+            truncate: true
         })
 
         res.status(200).json({ message: `${numberOfDeletedImages} Images were deleted successfully!` });
@@ -190,6 +197,7 @@ exports.convertOne = async (req, res) => {
     const id = req.params.id;
 
     try {
+        // SELECT * FROM image WHERE id=id
         const data = await Image.findByPk(id)
         const base64 = Buffer.from(data.imageData).toString("base64")
 

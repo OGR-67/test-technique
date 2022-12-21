@@ -26,6 +26,7 @@ exports.isTokenValid = async (req, res) => {
     try {
         let token = req.headers.token
 
+        // SELECT * FROM user WHERE token=token
         data = await User.findOne({ where: { token: token } })
 
         if (!data) {
