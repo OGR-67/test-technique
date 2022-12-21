@@ -39,8 +39,8 @@ Used to create an Image.
     "id": 1,
     "imageData": {
         "type": "Buffer", 
-        "data": [255,216,--,126]
-    }
+        "data": [255,216,"...",234,126]
+    },
     "imageMime": "image/jpeg",
     "imageType": ".jpg",
     "description":"a wonderful example", 
@@ -61,7 +61,7 @@ Used to create an Image.
 
 ```json
 {
-    message: "Description cannot be empty!"
+    "message": "Description cannot be empty!"
 }
 ```
 
@@ -75,7 +75,7 @@ Used to create an Image.
 
 ```json
 {
-    message: "Can't find token. Check your headers"
+    "message": "Can't find token. Check your headers"
 }
 ```
 
@@ -89,6 +89,6 @@ Used to create an Image.
 
 ```json
 {
-    message: "Invalid token, please register to get full access"
+    "message": "Invalid token, please register to get full access"
 }
 ```

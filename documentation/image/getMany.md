@@ -29,7 +29,7 @@ Used to retrieve images.
     "id": 1,
     "imageData": {
         "type": "Buffer", 
-        "data": [255,216,--,126]
+        "data": [255,216,"...",126]
     }
     "imageMime": "image/jpeg",
     "imageType": ".jpg",
@@ -41,7 +41,7 @@ Used to retrieve images.
     "id": 2,
     "imageData": {
         "type": "Buffer", 
-        "data": [55,26,--,12]
+        "data": [55,26,"...",12]
     }
     "imageMime": "image/jpeg",
     "imageType": ".jpg",

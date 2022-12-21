@@ -25,8 +25,8 @@ Used to retireve a particular image.
     "id": 1,
     "imageData": {
         "type": "Buffer", 
-        "data": [255,216,--,126]
-    }
+        "data": [255,216,"...",126]
+    },
     "imageMime": "image/jpeg",
     "imageType": ".jpg",
     "description":"a wonderful example", 
@@ -47,7 +47,7 @@ Used to retireve a particular image.
 
 ```json
 {
-    message: "Can't find token. Check your headers"
+    "message": "Can't find token. Check your headers"
 }
 ```
 
@@ -61,7 +61,7 @@ Used to retireve a particular image.
 
 ```json
 {
-    message: "Invalid token, please register to get full access"
+    "message": "Invalid token, please register to get full access"
 }
 ```
 
@@ -75,6 +75,6 @@ Used to retireve a particular image.
 
 ```json
 {
-    message: "Cannot find Image with id=153."
+    "message": "Cannot find Image with id=153."
 }
 ```
