@@ -1,7 +1,7 @@
 require("dotenv").config()
 
 module.exports = {
-    HOST: "localhost",
+    HOST: "127.0.0.1",
     USER: process.env.PGSQL_USER,
     PASSWORD: process.env.PGSQL_PASSWORD,
     DB: "testdb",
