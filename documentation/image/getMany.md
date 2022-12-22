@@ -8,7 +8,7 @@ Used to retrieve images.
 
 **Method** : `GET`
 
-**Auth required** : YES `HEADERS/token`
+**Auth required** : YES `HEADERS/Bearer token`
 
 **Query constraints** : `description`
 

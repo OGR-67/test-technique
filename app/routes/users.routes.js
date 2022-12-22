@@ -6,10 +6,7 @@ module.exports = (app) => {
     // Create a new User
     router.post("/register", users.create);
 
-    // Delete a user
-    router.delete("/delete/:id", users.delete);
-
-    // Retrieve all Images
+    // Collect A token for a registered user
     router.get("/login", users.sendToken);
 
     app.use("/user", router);

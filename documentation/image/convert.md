@@ -8,7 +8,7 @@ Used to convert an image to a HTML image tag.
 
 **Method** : `GET`
 
-**Auth required** : YES `HEADERS/token`
+**Auth required** : YES `HEADERS/Bearer token`
 
 **URL constraints** : `:id` as an integer
 

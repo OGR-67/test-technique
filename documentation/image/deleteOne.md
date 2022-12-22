@@ -8,7 +8,7 @@ Used to delete an Image.
 
 **Method** : `DELETE`
 
-**Auth required** : YES `HEADERS/token`
+**Auth required** : YES `HEADERS/Bearer token`
 
 **URL constraints** : `:id` as an integer
 

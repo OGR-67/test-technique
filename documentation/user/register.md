@@ -15,7 +15,7 @@ Used to create a user.
 ```json
 {
     "email": "[valid email address]",
-    "password": "[password in plain text]"
+    "password": "[password in plain text - at least 8 characters]"
 }
 ```
 
@@ -36,7 +36,6 @@ Used to create a user.
 
 ```json
 {
-    "id": 1,
     "token": "93144b288eb1fdccbe46d6fc0f241a51766ecd3d"
 }
 ```
@@ -68,6 +67,20 @@ Used to create a user.
 ```json
 {
     "message": "invalid email adress"
+}
+```
+
+### Password to short
+
+**Condition** : If 'password' doesn't contain at least 8 characters
+
+**Code** : `400 BAD REQUEST`
+
+**Content** :
+
+```json
+{
+    message: "password must have at least 8 characters"
 }
 ```
 

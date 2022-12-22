@@ -52,9 +52,7 @@ Used to collect a Token for a registered User.
 
 ```json
 {
-    "message": [
-        "email and password cannot be empty!"
-    ]
+    "message": "email and password cannot be empty!"
 }
 ```
 
@@ -68,9 +66,7 @@ Used to collect a Token for a registered User.
 
 ```json
 {
-    "message": [
-        "invalid email adress"
-    ]
+    "message": "invalid email adress"
 }
 ```
 
@@ -84,9 +80,7 @@ Used to collect a Token for a registered User.
 
 ```json
 {
-    "message": [
-        "user iLoveImages@example.com doesn't exist in our database"
-    ]
+    "message": "user iLoveImages@example.com doesn't exist in our database"
 }
 ```
 
@@ -100,8 +94,6 @@ Used to collect a Token for a registered User.
 
 ```json
 {
-    "message": [
-        "invalid password"
-    ]
+    "message": "invalid password"
 }
 ```

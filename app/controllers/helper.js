@@ -1,3 +1,5 @@
+require("dotenv").config();
+const jwt = require("jsonwebtoken");
 const db = require("../models");
 const User = db.users;
 
@@ -7,40 +9,37 @@ exports.checkId = (req, res) => {
     if (!parseInt(req.params.id)) {
         res.status(400).json({
             message: "id must be an integer. Check documentation."
-        })
+        });
         return false;
     }
-    return true
-}
+    return true;
+};
 
 // Check if given token is valid
 exports.isTokenValid = async (req, res) => {
 
-    if (!req.headers.token) {
+    let bearerHeader = req.headers.authorization;
+
+    if (!bearerHeader) {
         res.status(400).json({
             message: "Can't find token. Check your headers"
-        })
+        });
         return;
     }
 
-    try {
-        let token = req.headers.token
+    const token = bearerHeader.split(" ")[1];
 
-        // SELECT * FROM user WHERE token=token
-        data = await User.findOne({ where: { token: token } })
-
-        if (!data) {
-            res.status(401).json(
-                { message: "Invalid token, please register to get full access" }
-            );
-            return false
-        }
+    const isTokenValid = jwt.verify(token, process.env.TOKEN_KEY, (err, authData) => {
+        if (!authData) { return false; }
         return true;
+    });
+
+    if (!isTokenValid) {
+        res.status(401).json(
+            { message: "Invalid token, please register to get full access" }
+        );
     }
-    catch (err) {
-        res.status(500).json({
-            message:
-                err.message || "Some error occured while retrieving Users"
-        })
-    }
-}
+    return isTokenValid;
+
+
+};
