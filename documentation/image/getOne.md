@@ -8,7 +8,7 @@ Used to retireve a particular image.
 
 **Method** : `GET`
 
-**Auth required** : YES `HEADERS/Bearer token`
+**Auth required** : YES - `HEADERS/authorization/Bearer token`
 
 **URL constraints** : `:id` as an integer
 

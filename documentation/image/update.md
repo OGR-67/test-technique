@@ -8,7 +8,7 @@ Used to update the description of an image.
 
 **Method** : `PUT`
 
-**Auth required** : YES `HEADERS/Bearer token`
+**Auth required** : YES - `HEADERS/authorization/Bearer token`
 
 **URL constraints** : `:id` as an integer
 

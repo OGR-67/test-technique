@@ -8,7 +8,7 @@ Used to delete all images from database.
 
 **Method** : `DELETE`
 
-**Auth required** : YES `HEADERS/Bearer token`
+**Auth required** : YES - `HEADERS/authorization/Bearer token`
 
 ## Success Response
 

@@ -8,7 +8,7 @@ Used to create an Image record.
 
 **Method** : `POST`
 
-**Auth required** : YES `HEADERS/Bearer token`
+**Auth required** : YES - `HEADERS/authorization/Bearer token`
 
 **Data constraints** :
 
