@@ -62,7 +62,6 @@ exports.findAll = async (req, res) => {
         data = await Image.findAll({ where: condition });
         res.status(200).json(data);
     }
-
     catch (err) {
         res.status(500).json({
             message:
@@ -91,7 +90,6 @@ exports.findOne = async (req, res) => {
             });
         }
     }
-
     catch (err) {
         res.status(500).json({
             message: "Error retrieving Image with id=" + id
@@ -125,7 +123,6 @@ exports.update = async (req, res) => {
             });
         }
     }
-
     catch (err) {
         res.status(500).json({
             message: "Error updating Image with id=" + id
@@ -169,7 +166,7 @@ exports.deleteAll = async (req, res) => {
     if (!await isTokenValid(req, res)) { return; }
 
     try {
-        // TRUNCATE TABLE image
+        // ~ TRUNCATE TABLE image
         const numberOfDeletedImages = await Image.destroy({
             where: {},
             truncate: false
@@ -177,7 +174,6 @@ exports.deleteAll = async (req, res) => {
 
         res.status(200).json({ message: `${numberOfDeletedImages} Images were deleted successfully!` });
     }
-
     catch (err) {
         res.status(500).json({
             message:

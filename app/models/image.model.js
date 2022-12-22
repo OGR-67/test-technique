@@ -11,7 +11,6 @@ module.exports = (sequelize, Sequelize) => {
     const Image = sequelize.define("image", {
         imageData: {
             type: Sequelize.BLOB("long"),
-            allowNull: true
         },
         imageMime: {
             type: Sequelize.STRING(25)
@@ -23,6 +22,5 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         }
     });
-
     return Image;
 };

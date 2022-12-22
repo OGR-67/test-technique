@@ -40,6 +40,4 @@ exports.isTokenValid = async (req, res) => {
         );
     }
     return isTokenValid;
-
-
 };

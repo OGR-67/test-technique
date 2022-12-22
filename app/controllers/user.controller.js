@@ -3,8 +3,6 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const db = require("../models");
 const User = db.users;
-const Op = db.Sequelize.Op;
-const { checkId, isTokenValid } = require("./helper.js");
 
 // Create and Save a new User
 exports.create = async (req, res) => {
@@ -14,7 +12,6 @@ exports.create = async (req, res) => {
             res.status(400).json({
                 message: "email and password cannot be empty!"
             });
-
             return;
         }
 
@@ -54,7 +51,7 @@ exports.create = async (req, res) => {
             process.env.TOKEN_KEY
         );
 
-        // Create an User
+        // Create a User
         const user = {
             email: req.body.email,
             password: encryptedPassword,
@@ -64,11 +61,10 @@ exports.create = async (req, res) => {
         // Save User in the database
         // INSERT INTO user (email, password, token)
         // VALUES (user.email, user.password, user.token)
-        const data = await User.create(user);
+        await User.create(user);
         res.json({
             token: token
         });
-        console.log("User succesfully sent to database");
     }
     catch (err) {
         res.status(500).json({
@@ -89,15 +85,15 @@ exports.sendToken = async (req, res) => {
             return;
         }
 
+        let user = req.body.email;
+
         // Validate email pattern
-        if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(req.body.email)) {
+        if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(user)) {
             res.status(400).json({
                 message: "invalid email adress"
             });
             return;
         }
-
-        let user = req.body.email;
 
         // retrieve user
         // SELECT * FROM user where email=user

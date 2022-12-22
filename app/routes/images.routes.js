@@ -6,7 +6,7 @@ module.exports = async (app) => {
     // Create a new Image
     router.post("/", images.create);
 
-    // Convert base64 data to img tag with data URI
+    // Convert buffer data to img html tag with data URI
     router.get("/convert/:id", images.convertOne);
 
     // // Retrieve all Images

@@ -9,5 +9,6 @@ module.exports = (app) => {
     // Collect A token for a registered user
     router.get("/login", users.sendToken);
 
+
     app.use("/user", router);
 };
