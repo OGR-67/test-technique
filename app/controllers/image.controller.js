@@ -1,6 +1,5 @@
 const jimp = require("jimp");
 const db = require("../models");
-const { checkId, isTokenValid } = require("./helper.js");
 const Image = db.images;
 const Op = db.Sequelize.Op;
 const { extname } = require("path");
@@ -9,18 +8,7 @@ const { extname } = require("path");
 // Create and Save a new Image
 exports.create = async (req, res) => {
     try {
-        // Check token validity 
-        if (!await isTokenValid(req, res)) { return; }
-
-        // Validate request
-        if (!req.body.description) {
-            res.status(400).json({
-                message: "Description cannot be empty!"
-            });
-            return;
-        }
-
-        // Convert image to base64
+        // Convert image to buffer
         const imagePath = req.body.imagePath;
         const jimpImage = await jimp.read(imagePath);
         const mimeForImage = jimpImage._originalMime;
@@ -35,9 +23,6 @@ exports.create = async (req, res) => {
             description: req.body.description,
         };
 
-        // Save Image in the database
-        // INSERT INTO image (imageData, imageMime, imageExt, description)
-        // VALUES (buffer, mimeForImage, imageExtension, description)
         data = await Image.create(image);
         res.status(200).json(data);
     }
@@ -51,14 +36,10 @@ exports.create = async (req, res) => {
 
 // Retrieve Images from the database.
 exports.findAll = async (req, res) => {
-    // Check token validity 
-    if (!await isTokenValid(req, res)) { return; }
-
     const description = req.query.description;
     let condition = description ? { description: { [Op.iLike]: `%${description}%` } } : null;
 
     try {
-        // SELECT * FROM image WHERE description ILIKE "%description%"
         data = await Image.findAll({ where: condition });
         res.status(200).json(data);
     }
@@ -72,15 +53,9 @@ exports.findAll = async (req, res) => {
 
 // Find a single Image
 exports.findOne = async (req, res) => {
-    // Check token validity 
-    if (!await isTokenValid(req, res)) { return; }
-
-    // Check if id is an integer
-    if (!checkId(req, res)) { return; }
 
     const id = req.params.id;
     try {
-        // SELECT * FROM image WHERE id=id
         const data = await Image.findByPk(id);
 
         if (data) { res.status(200).json(data); }
@@ -99,16 +74,10 @@ exports.findOne = async (req, res) => {
 
 // Update the Image description, filtered by the id
 exports.update = async (req, res) => {
-    // Check token validity 
-    if (!await isTokenValid(req, res)) { return; }
-
-    // Check if id is an integer
-    if (!checkId(req, res)) { return; }
 
     const id = req.params.id;
 
     try {
-        // UPDATE image set description = req.body.description WHERE id=id
         const imageIsUpdated = await Image.update(req.body, {
             where: { id: id }
         });
@@ -132,15 +101,9 @@ exports.update = async (req, res) => {
 
 // Delete an Image with the specified id in the request
 exports.delete = async (req, res) => {
-    // Check token validity 
-    if (!await isTokenValid(req, res)) { return; }
-
-    // Check if id is an integer
-    if (!checkId(req, res)) { return; }
 
     const id = req.params.id;
     try {
-        // DELETE FROM image where id=id
         const imageIsDeleted = await Image.destroy({ where: { id: id } });
 
         if (imageIsDeleted == true) {
@@ -162,11 +125,8 @@ exports.delete = async (req, res) => {
 
 // Delete all Image from the database.
 exports.deleteAll = async (req, res) => {
-    // Check token validity 
-    if (!await isTokenValid(req, res)) { return; }
 
     try {
-        // ~ TRUNCATE TABLE image
         const numberOfDeletedImages = await Image.destroy({
             where: {},
             truncate: false
@@ -184,16 +144,10 @@ exports.deleteAll = async (req, res) => {
 
 // Convert Image data to img html tag with data-URI src
 exports.convertOne = async (req, res) => {
-    // Check token validity 
-    if (!await isTokenValid(req, res)) { return; }
-
-    // Check if id is an integer
-    if (!checkId(req, res)) { return; }
 
     const id = req.params.id;
 
     try {
-        // SELECT * FROM image WHERE id=id
         const data = await Image.findByPk(id);
         const base64 = Buffer.from(data.imageData).toString("base64");
 
